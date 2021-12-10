@@ -1,0 +1,8 @@
+Telethon
+requests
+pylint
+flake8
+mypy
+types-requests
+types-emoji
+emoji

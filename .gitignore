@@ -1,0 +1,12 @@
+.idea
+.mypy_cache
+.logs
+.DS_Store
+logs/
+*.json
+*.session
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
