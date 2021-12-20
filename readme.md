@@ -6,6 +6,7 @@
 ## What does this script do?
 It reads messages in the user-defined group/channel and sends them to the user-defined group/channel.
 At the moment, the script only understands and sends text messages and pictures. It doesn't send gif file, sound messages etc.
+The script can also replace some words in the sending message via keys `-replace` and `-text`
 
 ## Preparing for the start
 Before you start, you need to do a few things:
@@ -38,14 +39,18 @@ python3 main.py -i 09231295 -s "8231ndapsa98hbqd8auhu23dnjxcsba72" -b "091237025
 ### Parameters:
 > -i client_api_id (only integer),\
 > -s client_api_hash (only string),\
-> -b bot_token(only string),\
+> -b bot_token (only string),\
 > -l id of listening_group (only integer),\
-> -t id of target_group (as integer or as string with @)
+> -t id of target_group (as integer or as string with @),\
+> -r word which should be replaced (only string),\
+> -x the new word instead of replaced word (only string)
+
 
 ### You can also set more explicit parameters:
 ```bash
 python3 main.py --client_api_id 09231295 --client_api_hash "8231ndapsa98hbqd8auhu23dnjxcsba72" --bot_token "091237025:MAASDNBSAJIKSNd-pmc31-MNX9sas(SAdn1" --listening_group -312336552 --target_group "@your_target_channel"
 ```
+For word replacing with explicit parameters you should use keys `--replace` and `--text`
 
 ### 2. Way - Run in a docker container
 > **⚠ Important:**  
