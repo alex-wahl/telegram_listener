@@ -38,14 +38,14 @@ def parse_setup_options_from_cmd():
     command_line_args = sys.argv[1:]
 
     param_list = [
-        {'setup_option': '-i', 'setup_arg_name': 'client_api_id', 'required': True, 'int_type': True},
-        {'setup_option': '-s', 'setup_arg_name': 'client_api_hash', 'required': True, 'int_type': False},
-        {'setup_option': '-b', 'setup_arg_name': 'bot_token', 'required': True, 'int_type': False},
-        {'setup_option': '-l', 'setup_arg_name': 'listening_group', 'required': True, 'int_type': True},
-        {'setup_option': '-g', 'setup_arg_name': 'target_group', 'required': False, 'int_type': False},
-        {'setup_option': '-t', 'setup_arg_name': 'target_group_id', 'required': False, 'int_type': True},
-        {'setup_option': '-r', 'setup_arg_name': 'replace', 'required': False, 'int_type': False},
-        {'setup_option': '-x', 'setup_arg_name': 'text', 'required': False, 'int_type': False},
+        {'setup_option': '-i', 'setup_arg_name': 'client_api_id', 'required': True, 'int_type': True},  # noqa: E501
+        {'setup_option': '-s', 'setup_arg_name': 'client_api_hash', 'required': True, 'int_type': False},  # noqa: E501
+        {'setup_option': '-b', 'setup_arg_name': 'bot_token', 'required': True, 'int_type': False},  # noqa: E501
+        {'setup_option': '-l', 'setup_arg_name': 'listening_group', 'required': True, 'int_type': True},  # noqa: E501
+        {'setup_option': '-g', 'setup_arg_name': 'target_group', 'required': False, 'int_type': False},  # noqa: E501
+        {'setup_option': '-t', 'setup_arg_name': 'target_group_id', 'required': False, 'int_type': True},  # noqa: E501
+        {'setup_option': '-r', 'setup_arg_name': 'replace', 'required': False, 'int_type': False},  # noqa: E501
+        {'setup_option': '-x', 'setup_arg_name': 'text', 'required': False, 'int_type': False},  # noqa: E501
     ]
 
     unix_options = "i:vs:vb:vl:vt:vh:r:v:x:v:g:v"
@@ -64,7 +64,7 @@ def parse_setup_options_from_cmd():
     options_dict = {}
 
     try:
-        setup_options, setup_args = getopt.getopt(command_line_args, unix_options, gnu_options)
+        setup_options, setup_args = getopt.getopt(command_line_args, unix_options, gnu_options)  # noqa: E501
         setup_params = [*setup_options, *setup_args]
 
         for param in param_list:
@@ -73,8 +73,8 @@ def parse_setup_options_from_cmd():
             # provided from command line and if it's exists,
             # adding it to options_dict
             for item in setup_params:
-                if item[0] == param['setup_option'] or item[0] == f"--{param_name}":
-                    options_dict[param_name] = int(item[1]) if param['int_type'] else item[1]
+                if item[0] == param['setup_option'] or item[0] == f"--{param_name}":  # noqa: E501
+                    options_dict[param_name] = int(item[1]) if param['int_type'] else item[1]  # noqa: E501
                     continue
                 if item[0] == '--help' or item[0] == '--h':
                     sys.exit('Please read the readme file')
