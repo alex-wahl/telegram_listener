@@ -61,7 +61,7 @@ It helps you to save a session and logs.
 docker build -t telegram_bot:v1 .
 ```
 
-#### 2.2 Now you are able to rung your docker container
+#### 2.2 Now you are able to run your docker container
 ```bash
 docker run -it --restart=always -v /absolute_path/to/your/root_directory_of_project:/usr/src/app telegram_bot:v1 -i 09231295 -s "8231ndapsa98hbqd8auhu23dnjxcsba72" -b "091237025:MAASDNBSAJIKSNd-pmc31-MNX9sas(SAdn1" -l -312336552 -g "@your_target_channel"
 ```
