@@ -60,13 +60,3 @@ def deleter(path: str):
         warn(f'The file {path} was deleted')
     except OSError as some_error:
         print(f'Error: {path} : {some_error.strerror}')
-
-
-def reader():
-    """
-    This function is used to read the authentication
-    information from the auth.json file,
-    which must be located in the libs folder of the root
-    """
-    with open("libs/auth.json", "r", encoding='utf8') as authentication:
-        return json.loads(authentication.read())
