@@ -14,7 +14,8 @@ session = requests.session()
 
 setup_params = parse_setup_options_from_cmd()
 bot_token = setup_params['bot_token']
-target_group = setup_params['target_group']
+target_group = setup_params['target_group_id'] \
+    if 'target_group_id' in setup_params else setup_params['target_group']
 
 
 class BasicException(Exception):
