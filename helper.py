@@ -1,6 +1,5 @@
 """ The helper module serves as an assistant to other modules."""
 
-import json
 import logging
 import os
 
