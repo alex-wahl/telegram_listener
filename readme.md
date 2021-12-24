@@ -11,7 +11,7 @@ The script can also replace some words in the sending message via keys `-replace
 ## Preparing for the start
 Before you start, you need to do a few things:
 
-1. Get the api:hash for the account that will "listen" to the group we want. You can get this api:hash from: https://my.telegram.org/auth
+1. Get the api:hash and api_id for the account that will "listen" to the group we want. You can get this api:hash and api_id from: https://my.telegram.org/auth
 2. Create a telegram bot via botfather, read how to do this here: https://core.telegram.org/bots#3-how-do-i-create-a-bot
 3. Save the received HTTP API token, which we will use in the future.
 4. Add the bot created in step 2 to the channel or group we want to post something to.
