@@ -1,5 +1,4 @@
 Telethon
-requests
 pylint
 flake8
 mypy

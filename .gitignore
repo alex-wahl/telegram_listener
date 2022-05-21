@@ -1,8 +1,9 @@
 .idea
+logs/
+media/
 .mypy_cache
 .logs
 .DS_Store
-logs/
 *.json
 *.session
 *.session-journal
