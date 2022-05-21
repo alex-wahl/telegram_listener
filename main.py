@@ -39,16 +39,15 @@ async def sender(event):
     chat_id = event.chat_id
     if chat_id == args.listening_group:
         message = event.raw_text
-        user = await client.get_entity(event.from_id.user_id)
         chat = await client.get_entity(event.chat_id)
         if event.media:
             helper.creator("media")
             temporary_file = await client.download_media(event.media, file="media")
             await client.send_message(args.target_group, message, file=temporary_file)
-            helper.logging.info(f"Message from {user.username} in chat {chat.title}. Media: {temporary_file}")
+            helper.logging.info(f"{chat.title}: New media - {temporary_file}")
             helper.deleter(temporary_file)
         elif message and not (event.file or event.video or event.photo):
-            helper.logging.info(f"Message from {user.username} in chat {chat.title}. Message: {message}")
+            helper.logging.info(f"{chat.title}: New message - {message}")
             message = message.replace(args.word, args.new_word) if args.word else message
             await client.send_message(args.target_group, message)
 
