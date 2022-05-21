@@ -27,7 +27,7 @@ There are 2 ways to run the script:
 1. You can run main.py directly by passing the launch parameters from the console. This method is more suitable for testing and debugging.
 2. In this case the script will run as a service and in case of any errors the container will be restarted by itself.
 
-### 1. Way - Run as a python script
+### 1. Way - Run it as a python script
 
 ```bash
 python3 main.py --api_id 09231295 --api_hash 8231ndapsa98hbqd8auhu23dnjxcsba72 --listening_group -312336552 --target_group "-21312321342"  --word old_word --new_word new_word
@@ -42,7 +42,7 @@ python3 main.py --api_id 09231295 --api_hash 8231ndapsa98hbqd8auhu23dnjxcsba72 -
 > --new_word the new word instead of replaced word (string)
 
 
-### Run in a docker container
+### 2. Way - Run it in a docker container
 > **⚠ Important:**  
 > If you run the script the first time, you should start the docker container 
 > with parameter -it, so that you can interact with the telegram authentication.
