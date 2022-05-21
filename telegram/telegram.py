@@ -1,7 +1,8 @@
 """This module is used to send messages as well as messages
     with pictures to a specified Telegram group."""
 import requests
-import helper
+
+from telegram import helper
 
 BASE_URL = "https://api.telegram.org/bot"
 
