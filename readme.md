@@ -5,18 +5,15 @@
 
 ## What does this script do?
 It reads messages in the user-defined group/channel and sends them to the user-defined group/channel.
-At the moment, the script only understands and sends text messages and pictures. It doesn't send gif file, sound messages etc.
-The script can also replace some words in the sending message via keys `-replace` and `-text`
+At the moment, the script only understands and sends text messages and media files.
+The script can also replace some words in the sending message via keys `--word` and `--new_word`
 
 ## Preparing for the start
 Before you start, you need to do a few things:
 
 1. Get the api:hash and api_id for the account that will "listen" to the group we want. You can get this api:hash and api_id from: https://my.telegram.org/auth
-2. Create a telegram bot via botfather, read how to do this here: https://core.telegram.org/bots#3-how-do-i-create-a-bot
-3. Save the received HTTP API token, which we will use in the future.
-4. Add the bot created in step 2 to the channel or group we want to post something to.
-5. Find out the ID of the group in which we are going to read the posts. You can google it or look it up on YouTube. In simple terms, the ID is displayed in the web version of Telegram in the address bar of your browser. Importantly, it has to be copied with a dash.
-6. Find out the ID of the group we are going to send our messages to or if it has a name like @somethinglikethat we can use that as well.
+2. Find out the ID of the group in which we are going to read the posts. You can google it or look it up on YouTube. In simple terms, the ID is displayed in the web version of Telegram in the address bar of your browser. Importantly, it has to be copied with a dash.
+3. Find out the ID of the group we are going to send our messages to or if it has a name like @somethinglikethat we can use that as well.
 
 Now we have all the data we need to run the script/service.
 
@@ -33,26 +30,19 @@ There are 2 ways to run the script:
 ### 1. Way - Run as a python script
 
 ```bash
-python3 main.py -i 09231295 -s "8231ndapsa98hbqd8auhu23dnjxcsba72" -b "091237025:MAASDNBSAJIKSNd-pmc31-MNX9sas(SAdn1" -l -312336552 -g "@your_target_channel"
+python3 main.py --api_id 09231295 --api_hash 8231ndapsa98hbqd8auhu23dnjxcsba72 --listening_group -312336552 --target_group "-21312321342"  --word old_word --new_word new_word
 ```
 
 ### Parameters:
-> -i client_api_id (only integer),\
-> -s client_api_hash (only string),\
-> -b bot_token (only string),\
-> -l id of listening_group (only integer),\
-> -t id of target_group (as integer or as string with @),\
-> -r word which should be replaced (only string),\
-> -x the new word instead of replaced word (only string)
+> --api_id client_api_id (integer),\
+> --api_hash client_api_hash (string),\
+> --listening_group id of listening_group (integer),\
+> --target_group id of target_group (integer),\
+> --word word which should be replaced (string),\
+> --new_word the new word instead of replaced word (string)
 
 
-### You can also set more explicit parameters:
-```bash
-python3 main.py --client_api_id 09231295 --client_api_hash "8231ndapsa98hbqd8auhu23dnjxcsba72" --bot_token "091237025:MAASDNBSAJIKSNd-pmc31-MNX9sas(SAdn1" --listening_group -312336552 --target_group "@your_target_channel"
-```
-For word replacing with explicit parameters you should use keys `--replace` and `--text`
-
-### 2. Way - Run in a docker container
+### Run in a docker container
 > **⚠ Important:**  
 > If you run the script the first time, you should start the docker container 
 > with parameter -it, so that you can interact with the telegram authentication.
@@ -60,15 +50,15 @@ For word replacing with explicit parameters you should use keys `--replace` and 
 Any docker container must be started with the volume mounted.
 It helps you to save a session and logs.
 
-#### 2.1 Before you run a docker container, make the docker image.
+#### Before you run a docker container, make the docker image.
 
 ```bash
 docker build -t telegram_bot:v1 .
 ```
 
-#### 2.2 Now you are able to run your docker container
+#### Now you are able to run your docker container
 ```bash
-docker run -it --restart=always -v /absolute_path/to/your/root_directory_of_project:/usr/src/telegram telegram_bot:v1 -i 09231295 -s "8231ndapsa98hbqd8auhu23dnjxcsba72" -b "091237025:MAASDNBSAJIKSNd-pmc31-MNX9sas(SAdn1" -l -312336552 -g "@your_target_channel"
+docker run -it --restart=always -v /absolute_path/to/your/root_directory_of_project:/usr/src/telegram telegram_bot:v1 --api_id 09231295 --api_hash 8231ndapsa98hbqd8auhu23dnjxcsba72 --listening_group -312336552 --target_group -93372553
 ```
 
 Once you have successfully started the container and authenticated, you can just close the console (don't use ctrl-c), the script will run itself.
