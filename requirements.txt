@@ -1,7 +1,8 @@
-Telethon
+Telethon~=1.23.0
 pylint
 flake8
 mypy
 types-requests
 types-emoji
 emoji
+deepl
