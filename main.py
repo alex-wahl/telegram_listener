@@ -4,8 +4,10 @@
     """
 import argparse
 
+from telethon.errors.rpcerrorlist import MediaCaptionTooLongError
 from telethon import TelegramClient, events
 from telegram import helper
+from telegram import translator
 
 helper.logfile()
 
@@ -18,6 +20,7 @@ parser.add_argument('--target_group', type=int, dest='target_group', help='Teleg
                                                                           'client')
 parser.add_argument('--word', type=str, dest='word', help='A word, which should be replaced in the message')
 parser.add_argument('--new_word', type=str, dest='new_word', help='A new word, which should be in the message')
+parser.add_argument('--key', type=str, dest='key', help='auth-key, to translate texts')
 
 args = parser.parse_args()
 
@@ -40,12 +43,20 @@ async def sender(event):
     if chat_id == args.listening_group:
         message = event.raw_text
         chat = await client.get_entity(event.chat_id)
-        message = message.replace(args.word, args.new_word) if args.word and message else message
+        if args.key:
+            message = await translator.translate(args.key, target_lang="RU", text=message, source_lang="EN")
+        if args.word:
+            message = message.replace(args.word, args.new_word)
         if event.media:
             helper.creator("media")
             temporary_file = await client.download_media(event.media, file="media")
             helper.logging.info(f"{chat.title}: New media - {temporary_file}")
-            await client.send_message(args.target_group, message, file=temporary_file)
+            try:
+                await client.send_message(args.target_group, message=message, file=temporary_file)
+            except MediaCaptionTooLongError:
+                helper.logging.info(f"Exception thrown when sending a message: {MediaCaptionTooLongError}")
+                await client.send_file(args.target_group, file=temporary_file)
+                await client.send_message(args.target_group, message)
             helper.deleter(temporary_file)
         elif message and not (event.file or event.video or event.photo):
             helper.logging.info(f"{chat.title}: New message - {message}")
