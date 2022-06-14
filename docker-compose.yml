@@ -15,4 +15,4 @@ services:
       --api_hash $API_HASH
       --listening_group $LISTENING_GROUP
       --target_group $TARGET_GROUP
-      --key $KEYs
+      --key $KEY
