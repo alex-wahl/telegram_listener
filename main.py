@@ -12,10 +12,12 @@ from telegram import translator
 helper.logfile()
 
 parser = argparse.ArgumentParser(description='Get connection with the telegram client')
+parser.add_argument('--name_session', type=str, dest='name_session', help='Name_session for your telegram client')
 parser.add_argument('--api_id', type=int, dest='api_id', help='Telegram api_id for the Telegram client')
 parser.add_argument('--api_hash', type=str, dest='api_hash', help='Telegram api_hash for the Telegram client')
-parser.add_argument('--listening_group', type=int, dest='listening_group', help='Telegram listening_group for the '
-                                                                                'Telegram client')
+parser.add_argument('--listening_group', type=int, dest='listening_group',
+                    help='Telegram listening_group for the '
+                         'Telegram client')
 parser.add_argument('--target_group', type=int, dest='target_group', help='Telegram target_group for the Telegram '
                                                                           'client')
 parser.add_argument('--word', type=str, dest='word', help='A word, which should be replaced in the message')
@@ -25,7 +27,7 @@ parser.add_argument('--key', type=str, dest='key', help='auth-key, to translate 
 args = parser.parse_args()
 
 client = TelegramClient(
-    'retranslator',
+    args.name_session,
     args.api_id,
     args.api_hash
 )
